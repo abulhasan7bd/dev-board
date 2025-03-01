@@ -4,10 +4,20 @@ let dayshow = document.getElementById("day");
 let yearShow = document.getElementById("year");
 let clear_btn = document.querySelector(".clear-btn");
 let counter = document.querySelector(".count");
+let clear_container = document.querySelector(".history-list");
+assigned.innerHTML = complete_btn.length;
 complete_btn.forEach((button) => {
   button.addEventListener("click", (e) => {
-    alert("ddd");
-    // button.classList.add("disable-btn");
+    alert("Board updated Successfully");
+    button.classList.add("disable-btn");
+    let cardTitle =
+      button.parentElement.parentElement.querySelector("h3").innerText;
+    console.log(cardTitle);
+    let liCreate = document.createElement("li");
+    liCreate.classList.add("history-box");
+    let liText = `You have Complete The Task ${cardTitle} at ${myClock()}`;
+    liCreate.innerHTML = liText;
+    clear_container.appendChild(liCreate);
     counter.innerText++;
     button.disabled = true;
     assigne.innerText--;
@@ -48,7 +58,6 @@ color.addEventListener("click", () => {
   document.querySelector("body").style.backgroundColor = getRandomColor();
 });
 
-let clear_container = document.querySelector(".history-list");
 clear_btn.addEventListener("click", () => {
   clear_container.innerHTML = "";
 });
@@ -58,5 +67,22 @@ discoverbtn.addEventListener("click", () => {
   window.location.href = "problem.html";
 });
 
+const myClock = () => {
+  let time = new Date();
+  let hour = time.getHours();
+  let period = "AM"; 
+  if (hour >= 12) {
+    period = "PM";
+    if (hour > 12) {
+      hour = hour - 12;
+    }
+  }
+  if (hour === 0) {
+    hour = 12;
+  }
+  let minute = time.getMinutes().toString().padStart(2, "0");
+  let second = time.getSeconds().toString().padStart(2, "0");
+  return `Time is ${hour}:${minute}:${second} ${period}`;
+};
 
-
+console.log(myClock());
