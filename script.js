@@ -9,6 +9,10 @@ assigned.innerHTML = complete_btn.length;
 complete_btn.forEach((button) => {
   button.addEventListener("click", (e) => {
     alert("Board updated Successfully");
+    console.log(assigne.innerText);
+    if (parseFloat(assigne.innerText) === 1) {
+      alert("Congratulations!!! You have completed all current tasks");
+    }
     button.classList.add("disable-btn");
     let cardTitle =
       button.parentElement.parentElement.querySelector("h3").innerText;
@@ -70,7 +74,7 @@ discoverbtn.addEventListener("click", () => {
 const myClock = () => {
   let time = new Date();
   let hour = time.getHours();
-  let period = "AM"; 
+  let period = "AM";
   if (hour >= 12) {
     period = "PM";
     if (hour > 12) {
